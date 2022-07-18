@@ -1,4 +1,6 @@
 import Button from "@components/Button";
+import FullScreenWrapper from "@components/FullScreenWrapper";
+import Sum from "@components/Sum";
 import TimesTable from "@components/TimesTable";
 import { List } from "immutable";
 import { useGetSumsQuery } from "queries/sums";
@@ -21,7 +23,7 @@ const Quiz = () => {
 
   if (gameState === "setup") {
     return (
-      <div className="bg-purple-200 h-screen flex flex-col items-center justify-center">
+      <FullScreenWrapper>
         <div className="mb-2 font-extrabold text-xl text-purple-500">
           Choose your timestables
         </div>
@@ -48,20 +50,14 @@ const Quiz = () => {
         >
           Let's go
         </Button>
-      </div>
+      </FullScreenWrapper>
     );
   }
 
-  return data ? (
-    <>
-      {data.map((sum) => (
-        <>
-          {sum.X} X {sum.Y}
-        </>
-      ))}
-    </>
-  ) : (
-    <>Loading</>
+  return (
+    <FullScreenWrapper>
+      {data ? data.map((sum) => <Sum x={sum.X} y={sum.Y} />) : <>Loading</>}
+    </FullScreenWrapper>
   );
 };
 
