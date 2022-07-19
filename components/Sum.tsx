@@ -3,6 +3,11 @@ const Sum = ({ x, y }: { x: number; y: number }) => (
     <span className="flex justify-center font-bold w-10">{x}</span>
     <span>x</span>
     <span className="flex justify-center font-bold w-10">{y}</span>
+    <span className="mr-2">=</span>
+    <input
+      type="text"
+      className="border-b-2 border-b-white w-10 rounded text-center"
+    />
   </div>
 );
 

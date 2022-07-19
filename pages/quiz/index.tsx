@@ -56,7 +56,9 @@ const Quiz = () => {
 
   return (
     <FullScreenWrapper>
-      {data ? data.map((sum) => <Sum x={sum.X} y={sum.Y} />) : <>Loading</>}
+      <div className="grid grid-cols-4 gap-4">
+        {data ? data.map((sum) => <Sum x={sum.X} y={sum.Y} />) : <>Loading</>}
+      </div>
     </FullScreenWrapper>
   );
 };
