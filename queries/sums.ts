@@ -19,5 +19,5 @@ export const useGetSumsQuery = (nums: List<number>, enabled: boolean) =>
 
       return shuffle<ISumsResponse>(response.data);
     },
-    { enabled }
+    { enabled, refetchOnWindowFocus: false }
   );
