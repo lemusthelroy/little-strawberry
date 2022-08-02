@@ -29,7 +29,7 @@ const Home = () => (
           <Button>Let's go!</Button>
         </Link>
         {
-          process.env.NEXT_PUBLIC_IS_PREVIEW && <strong>PREVIEW MODE!</strong>
+          process.env.NEXT_PUBLIC_IS_PREVIEW === "false" && <strong>PREVIEW MODE!</strong>
         }
       </main>
       <Footer />
