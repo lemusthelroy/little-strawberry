@@ -26,7 +26,7 @@ const Home = () => (
 
         <p className="p-4">Are you ready to take the quiz?</p>
         <Link href="/quiz">
-          <Button>Let's play!</Button>
+          <Button>Let's play the game!</Button>
         </Link>
       </main>
       <Footer />
