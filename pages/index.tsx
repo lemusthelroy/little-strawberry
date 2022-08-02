@@ -28,6 +28,9 @@ const Home = () => (
         <Link href="/quiz">
           <Button>Let's go!</Button>
         </Link>
+        {
+          process.env.IS_PREVIEW && <strong>PREVIEW MODE!</strong>
+        }
       </main>
       <Footer />
     </div>
