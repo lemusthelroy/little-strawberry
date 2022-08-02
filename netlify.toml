@@ -6,4 +6,4 @@
   package = "@netlify/plugin-nextjs"
 
 [context.deploy-preview]
-  environment = { IS_PREVIEW = "true" }
+  environment = { NEXT_PUBLIC_IS_PREVIEW = "true" }
