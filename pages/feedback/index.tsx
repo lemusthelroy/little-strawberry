@@ -14,6 +14,7 @@ const Feedback = () => {
         netlify-honeypot="bot-field"
         data-netlify="true"
       >
+        <input type="hidden" name="subject" value="Feedback from Purple Dash" />
         <input type="hidden" name="form-name" value="contact" />
         <div className="flex flex-col">
           <label htmlFor="name">Your Name:</label>
@@ -27,7 +28,7 @@ const Feedback = () => {
 
           <div className="hidden">
             <label htmlFor="bot-field">
-              Don’t fill this out if you’re human:
+              Don't fill this out if you're human:
             </label>
             <Input type="text" name="bot-field" id="bot-field" />
           </div>
