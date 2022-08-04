@@ -11,6 +11,7 @@ const Feedback = () => {
         name="contact"
         action="/feedback/success"
         method="POST"
+        netlify-honeypot="bot-field"
         data-netlify="true"
       >
         <input type="hidden" name="form-name" value="contact" />
@@ -27,7 +28,6 @@ const Feedback = () => {
           <Button type="submit">Send</Button>
         </div>
       </form>
-      {/* )} */}
     </FullScreenWrapper>
   );
 };
