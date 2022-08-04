@@ -25,6 +25,13 @@ const Feedback = () => {
           <label htmlFor="message">Feedback:</label>
           <TextArea name="message" id="message"></TextArea>
 
+          <div className="hidden">
+            <label htmlFor="bot-field">
+              Don’t fill this out if you’re human:
+            </label>
+            <Input type="text" name="bot-field" id="bot-field" />
+          </div>
+
           <Button type="submit">Send</Button>
         </div>
       </form>
