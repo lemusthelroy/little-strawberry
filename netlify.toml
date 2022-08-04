@@ -4,3 +4,12 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "/home"
+  to = "/"
+
+[[redirects]]
+  from = "/contact"
+  to = "/feedback"
+
