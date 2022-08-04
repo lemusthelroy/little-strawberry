@@ -48,7 +48,7 @@ const Quiz = () => {
             setGameState("play");
           }}
         >
-          Let's go
+          Begin the quiz
         </Button>
       </FullScreenWrapper>
     );
