@@ -9,6 +9,7 @@ const Feedback = () => {
 
   return (
     <FullScreenWrapper>
+      <input type="hidden" name="form-name" value="contact" />
       {isSubmitted ? (
         <strong>Thanks for your feedback</strong>
       ) : (
@@ -20,7 +21,6 @@ const Feedback = () => {
             setIsSubmitted(true);
           }}
         >
-          <input type="hidden" name="form-name" value="contact" />
           <div className="flex flex-col">
             <label htmlFor="name">Your Name:</label>
             <Input type="text" name="name" id="name" />
