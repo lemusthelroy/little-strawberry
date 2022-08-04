@@ -7,13 +7,13 @@ const Feedback = () => (
   <FullScreenWrapper>
     <form name="contact" method="POST" data-netlify="true">
       <div className="flex flex-col">
-        <label>Your Name:</label>
+        <label htmlFor="name">Your Name:</label>
         <Input type="text" name="name" />
 
-        <label>Your Email:</label>
+        <label htmlFor="email">Your Email:</label>
         <Input type="text" name="email" />
 
-        <label>Feedback:</label>
+        <label htmlFor="message">Feedback:</label>
         <TextArea name="message"></TextArea>
 
         <Button type="submit">Send</Button>
