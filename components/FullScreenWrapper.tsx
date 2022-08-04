@@ -1,7 +1,15 @@
+import Head from "next/head";
+
 const FullScreenWrapper = ({ children }: { children: React.ReactNode }) => (
-  <div className="bg-purple-200 h-screen flex flex-col items-center justify-center">
-    {children}
-  </div>
+  <>
+    <Head>
+      <title>Purple Dash</title>
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    <div className="bg-purple-200 h-screen flex flex-col items-center justify-center">
+      {children}
+    </div>
+  </>
 );
 
 export default FullScreenWrapper;
