@@ -18,10 +18,10 @@ const Home = () => (
         <Header title="Purple Dash" />
 
         <div className="sm:hidden block">
-          <Image src={"/quiz.svg"} height={150} width={150} />
+          <Image alt='quiz-logo' src={"/quiz.svg"} height={150} width={150} />
         </div>
         <div className="sm:block hidden">
-          <Image src={"/quiz.svg"} height={300} width={300} />
+          <Image alt='quiz-logo' src={"/quiz.svg"} height={300} width={300} />
         </div>
 
         <p className="p-4">Are you ready to take the quiz?</p>
