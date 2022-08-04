@@ -8,13 +8,13 @@ const Feedback = () => (
     <form name="contact" method="POST" data-netlify="true">
       <div className="flex flex-col">
         <label htmlFor="name">Your Name:</label>
-        <Input type="text" name="name" />
+        <Input type="text" name="name" id="name" />
 
         <label htmlFor="email">Your Email:</label>
-        <Input type="text" name="email" />
+        <Input type="text" name="email" id="email" />
 
         <label htmlFor="message">Feedback:</label>
-        <TextArea name="message"></TextArea>
+        <TextArea name="message" id="message"></TextArea>
 
         <Button type="submit">Send</Button>
       </div>
