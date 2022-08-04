@@ -5,22 +5,15 @@ import TextArea from "@components/TextArea";
 import { useState } from "react";
 
 const Feedback = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
   return (
     <FullScreenWrapper>
-      <input type="hidden" name="form-name" value="contact" />
-      {/* {isSubmitted ? (
-        <strong>Thanks for your feedback</strong>
-      ) : ( */}
       <form
         name="contact"
+        action="/feedback/success"
         method="POST"
         data-netlify="true"
-        onSubmit={() => {
-          setIsSubmitted(true);
-        }}
       >
+        <input type="hidden" name="form-name" value="contact" />
         <div className="flex flex-col">
           <label htmlFor="name">Your Name:</label>
           <Input type="text" name="name" id="name" />
