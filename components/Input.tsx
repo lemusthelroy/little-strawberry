@@ -19,6 +19,7 @@ const Input = ({
       render={(renderProps) => (
         <input
           className={clsx("mb-2 p-2 rounded", className)}
+          id={name}
           type={type}
           onChange={renderProps.field.onChange}
         />

@@ -18,7 +18,7 @@ const Button = ({
     onClick={onClick}
     disabled={disabled}
     className={clsx(
-      "bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full",
+      "bg-purple-400 hover:bg-purple-700 hover:border-purple-400 border-purple-200 border-2 text-white font-bold py-2 px-4 rounded-full",
       className
     )}
     type={type}

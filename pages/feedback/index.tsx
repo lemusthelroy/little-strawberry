@@ -18,10 +18,10 @@ const Feedback = () => {
         <input type="hidden" name="form-name" value="contact" />
         <div className="flex flex-col">
           <label htmlFor="name">Your Name:</label>
-          <Input type="text" name="name" id="name" />
+          <Input type="text" name="name" />
 
           <label htmlFor="email">Your Email:</label>
-          <Input type="text" name="email" id="email" />
+          <Input type="text" name="email" />
 
           <label htmlFor="message">Feedback:</label>
           <TextArea name="message" id="message"></TextArea>
@@ -30,7 +30,7 @@ const Feedback = () => {
             <label htmlFor="bot-field">
               Don't fill this out if you're human:
             </label>
-            <Input type="text" name="bot-field" id="bot-field" />
+            <Input type="text" name="bot-field" />
           </div>
 
           <Button type="submit">Send</Button>
