@@ -1,23 +1,25 @@
 import Button from "@components/Button";
 import FullScreenWrapper from "@components/FullScreenWrapper";
-import Sum from "@components/Sum";
+import Sums from "@components/Sums";
 import TimesTable from "@components/TimesTable";
-import { List } from "immutable";
 import { useGetSumsQuery } from "queries/sums";
 import { useState } from "react";
 
 const Quiz = () => {
-  const [selectedNumbers, setSelectedNumbers] = useState(List<number>());
+  const [selectedNumbers, setSelectedNumbers] = useState<number[]>([]);
   const [gameState, setGameState] = useState<"setup" | "play">("setup");
 
-  const { data } = useGetSumsQuery(selectedNumbers, gameState === "play");
+  const { data } = useGetSumsQuery(
+    selectedNumbers,
+    gameState === "play" && selectedNumbers.length > 0
+  );
 
   const onNumberClickHandler = (number: number) => {
     const foundNumber = selectedNumbers.findIndex((x) => x === number);
     if (foundNumber !== -1) {
-      setSelectedNumbers(selectedNumbers.remove(foundNumber));
+      setSelectedNumbers(selectedNumbers.filter((x) => x !== foundNumber));
     } else {
-      setSelectedNumbers(selectedNumbers.push(number));
+      setSelectedNumbers([...(selectedNumbers ?? []), number]);
     }
   };
 
@@ -43,7 +45,7 @@ const Quiz = () => {
         </div>
         <Button
           className="mt-2"
-          disabled={selectedNumbers.count() === 0}
+          disabled={!selectedNumbers || selectedNumbers.length === 0}
           onClick={() => {
             setGameState("play");
           }}
@@ -56,9 +58,18 @@ const Quiz = () => {
 
   return (
     <FullScreenWrapper>
-      <div className="grid grid-cols-4 gap-4">
-        {data ? data.map((sum) => <Sum x={sum.X} y={sum.Y} />) : <>Loading</>}
-      </div>
+      {data ? (
+        <Sums
+          sums={data}
+          numbers={selectedNumbers}
+          onClear={() => {
+            setSelectedNumbers([]);
+            setGameState("setup");
+          }}
+        />
+      ) : (
+        <>Loading</>
+      )}
     </FullScreenWrapper>
   );
 };

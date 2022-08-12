@@ -1,18 +1,24 @@
 import axios from "axios";
-import { List } from "immutable";
-import { useQuery } from "react-query";
+import { QueryCache, QueryClient, useQuery, useQueryClient } from "react-query";
 import shuffle from "utilities/shuffle";
 
-interface ISumsResponse {
+export interface ISumsResponse {
   X: number;
   Y: number;
 }
 
-export const useGetSumsQuery = (nums: List<number>, enabled: boolean) =>
+// const queryClient = useQueryClient();
+
+// export const clearGetSumsQuery = (nums: number[]) => {
+//   queryClient.invalidateQueries(["getSums", nums]);
+// };
+
+export const useGetSumsQuery = (nums: number[], enabled: boolean) =>
   useQuery(
-    ["getSums", nums],
+    ["getSums", nums.toString()],
     async () => {
       const numsQuery = nums.join();
+      console.log({ nums });
       const response = await axios.get<ISumsResponse[]>(
         `https://sums-api-service-52fa57c-4fgiuwrxiq-ew.a.run.app/sums?numbers=${numsQuery}`
       );
