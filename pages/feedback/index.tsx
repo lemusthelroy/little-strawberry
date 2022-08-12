@@ -1,6 +1,6 @@
 import Button from "@components/Button";
 import FullScreenWrapper from "@components/FullScreenWrapper";
-import Input from "@components/Input";
+import { RawInput as Input } from "@components/Input";
 import TextArea from "@components/TextArea";
 import { useState } from "react";
 
@@ -18,10 +18,10 @@ const Feedback = () => {
         <input type="hidden" name="form-name" value="contact" />
         <div className="flex flex-col">
           <label htmlFor="name">Your Name:</label>
-          <Input type="text" name="name" />
+          <Input type="text" id="name" />
 
           <label htmlFor="email">Your Email:</label>
-          <Input type="text" name="email" />
+          <Input type="text" id="email" />
 
           <label htmlFor="message">Feedback:</label>
           <TextArea name="message" id="message"></TextArea>
@@ -30,7 +30,7 @@ const Feedback = () => {
             <label htmlFor="bot-field">
               Don't fill this out if you're human:
             </label>
-            <Input type="text" name="bot-field" />
+            <Input type="text" id="bot-field" />
           </div>
 
           <Button type="submit">Send</Button>
