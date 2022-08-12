@@ -5,6 +5,7 @@ import { useQueryClient } from "react-query";
 import { FaRedo, FaPlay } from "react-icons/fa";
 import Button from "./Button";
 import Sum from "./Sum";
+import IncorrectSum from "./IncorrectSum";
 
 const Sums = ({
   sums,
@@ -16,19 +17,31 @@ const Sums = ({
   onClear: VoidFunction;
 }) => {
   const formMethods = useForm<{
-    [key: string]: string;
+    [key: string]: string | undefined;
   }>();
 
   const [score, setScore] = useState<number>();
+  const [incorrectAnswers, setIncorrectAnswers] = useState<{
+    [key: string]: string | undefined;
+  }>({});
 
-  const onSubmit = (data: { [key: string]: string }) => {
+  const onSubmit = (data: { [key: string]: string | undefined }) => {
     let correctCount = 0;
+    let incorrectAnswersSubmitted: { [key: string]: string | undefined } = {};
     Object.entries(data).forEach(([key, value]) => {
       const x = key.split("-")[0];
       const y = key.split("-")[1];
       const correctAnswer = parseInt(x) * parseInt(y);
-      correctAnswer === parseInt(value) && correctCount++;
+      if (value === undefined) {
+        incorrectAnswersSubmitted[key] = value;
+      } else {
+        correctAnswer === parseInt(value) && correctCount++;
+      }
+      if (!correctAnswer) {
+        incorrectAnswersSubmitted[key] = value;
+      }
     });
+    setIncorrectAnswers(incorrectAnswersSubmitted);
     setScore(correctCount);
   };
 
@@ -41,9 +54,25 @@ const Sums = ({
           {score} / {sums.length}
         </h2>
         <p className="mt-2">
-          {sums.length / score === 1
-            ? "Nice work! 🎉"
-            : "Almost there...keep trying! 👏"}
+          {sums.length / score === 1 ? (
+            "Nice work! 🎉"
+          ) : (
+            <div className="mt-6">
+              {Object.entries(incorrectAnswers).map(([key, value]) => {
+                console.log({ value });
+                const x = key.split("-")[0];
+                const y = key.split("-")[1];
+                return (
+                  <IncorrectSum
+                    x={parseInt(x)}
+                    y={parseInt(y)}
+                    answer={value ? parseInt(value) : undefined}
+                  />
+                );
+              })}
+              Almost there...keep trying! 👏
+            </div>
+          )}
         </p>
 
         <div className="flex flex-row justify-center">
@@ -60,7 +89,6 @@ const Sums = ({
           <Button
             className="mt-4 ml-2 mr-1 flex flex-row items-center"
             onClick={() => {
-              console.log(["getSums", numbers.toString()]);
               queryClient.resetQueries(["getSums", numbers.toString()]);
             }}
           >
