@@ -32,12 +32,11 @@ const Sums = ({
       const x = key.split("-")[0];
       const y = key.split("-")[1];
       const correctAnswer = parseInt(x) * parseInt(y);
-      if (value === undefined) {
-        incorrectAnswersSubmitted[key] = value;
+      const answeredCorrectly = value && correctAnswer === parseInt(value);
+
+      if (answeredCorrectly) {
+        correctCount++;
       } else {
-        correctAnswer === parseInt(value) && correctCount++;
-      }
-      if (!correctAnswer) {
         incorrectAnswersSubmitted[key] = value;
       }
     });

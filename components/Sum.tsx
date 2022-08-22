@@ -8,7 +8,7 @@ const Sum = ({ x, y }: { x: number; y: number }) => (
     <span className="mr-2">=</span>
     <Input
       name={`${x}-${y}`}
-      type="text"
+      type="tel"
       className="border-b-2 border-b-white w-10 rounded text-center"
     />
   </div>
