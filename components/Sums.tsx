@@ -5,7 +5,6 @@ import { useQueryClient } from "react-query";
 import { FaRedo, FaPlay } from "react-icons/fa";
 import Button from "./Button";
 import Sum from "./Sum";
-import IncorrectSum from "./IncorrectSum";
 
 const Sums = ({
   sums,
@@ -46,69 +45,63 @@ const Sums = ({
 
   const queryClient = useQueryClient();
 
-  if (score !== undefined) {
-    return (
-      <div className="text-center">
-        <h2 className="text-6xl">
-          {score} / {sums.length}
-        </h2>
-        <p className="mt-2">
-          {sums.length / score === 1 ? (
-            "Nice work! 🎉"
-          ) : (
-            <div className="mt-6">
-              {Object.entries(incorrectAnswers).map(([key, value]) => {
-                console.log({ value });
-                const x = key.split("-")[0];
-                const y = key.split("-")[1];
-                return (
-                  <IncorrectSum
-                    x={parseInt(x)}
-                    y={parseInt(y)}
-                    answer={value ? parseInt(value) : undefined}
-                  />
-                );
-              })}
-              Almost there...keep trying! 👏
-            </div>
-          )}
-        </p>
+  const renderScore = () => {
+    if (score !== undefined) {
+      return (
+        <div className="text-center mb-4">
+          <h2 className="text-6xl">
+            {score} / {sums.length}
+          </h2>
 
-        <div className="flex flex-row justify-center">
-          <Button
-            className="mt-4 mr-1 flex flex-row items-center"
-            onClick={() => {
-              formMethods.reset();
-              setScore(undefined);
-              onClear();
-            }}
-          >
-            New quiz <FaPlay className="ml-2" />
-          </Button>
-          <Button
-            className="mt-4 ml-2 mr-1 flex flex-row items-center"
-            onClick={() => {
-              queryClient.resetQueries(["getSums", numbers.toString()]);
-            }}
-          >
-            Try Again <FaRedo className="ml-2" />
-          </Button>
+          <p className="mt-2">
+            {sums.length / score === 1
+              ? "Nice work! 🎉"
+              : "Almost there...keep trying! 👏"}
+          </p>
         </div>
-      </div>
-    );
-  }
+      );
+    }
+  };
 
   return (
     <FormProvider {...formMethods}>
+      {renderScore()}
       <form onSubmit={formMethods.handleSubmit(onSubmit)}>
         <div className="grid sm:grid-cols-4 grid-cols-2 gap-4">
           {sums.map((sum) => (
-            <Sum x={sum.X} y={sum.Y} />
+            <Sum
+              x={sum.X}
+              y={sum.Y}
+              incorrect={!!incorrectAnswers[`${sum.X}-${sum.Y}`]}
+            />
           ))}
         </div>
-        <div className="flex flex-row mt-4 justify-center">
-          <Button type="submit">Submit Answers</Button>
-        </div>
+        {score === undefined || sums.length / score !== 1 ? (
+          <div className="flex flex-row mt-4 justify-center">
+            <Button type="submit">Submit Answers</Button>
+          </div>
+        ) : (
+          <div className="flex flex-row justify-center">
+            <Button
+              className="mt-4 mr-1 flex flex-row items-center"
+              onClick={() => {
+                formMethods.reset();
+                setScore(undefined);
+                onClear();
+              }}
+            >
+              New quiz <FaPlay className="ml-2" />
+            </Button>
+            <Button
+              className="mt-4 ml-2 mr-1 flex flex-row items-center"
+              onClick={() => {
+                queryClient.resetQueries(["getSums", numbers.toString()]);
+              }}
+            >
+              Try Again <FaRedo className="ml-2" />
+            </Button>
+          </div>
+        )}
       </form>
     </FormProvider>
   );

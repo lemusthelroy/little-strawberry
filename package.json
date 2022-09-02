@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@hookform/devtools": "^4.2.2",
-    "@netlify/functions": "^1.2.0",
     "axios": "^0.27.2",
     "clsx": "^1.2.1",
     "link": "^1.5.1",
@@ -22,7 +21,6 @@
     "react-query": "^3.39.2"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^4.7.1",
     "@svgr/webpack": "^6.2.1",
     "@types/mjml": "^4.7.0",
     "@types/node": "^18.0.4",
