@@ -6,7 +6,7 @@ const FullScreenWrapper = ({ children }: { children: React.ReactNode }) => (
       <title>Purple Dash</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <div className="bg-purple-200 h-screen flex flex-col items-center justify-center">
+    <div className="bg-purple-200 min-h-screen flex flex-col items-center justify-center py-4">
       {children}
     </div>
   </>

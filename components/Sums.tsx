@@ -25,6 +25,7 @@ const Sums = ({
   }>({});
 
   const onSubmit = (data: { [key: string]: string | undefined }) => {
+    window.scrollTo(0, 0);
     let correctCount = 0;
     let incorrectAnswersSubmitted: { [key: string]: string | undefined } = {};
     Object.entries(data).forEach(([key, value]) => {
@@ -66,7 +67,10 @@ const Sums = ({
   return (
     <FormProvider {...formMethods}>
       {renderScore()}
-      <form onSubmit={formMethods.handleSubmit(onSubmit)}>
+      <form
+        className="overflow-visible"
+        onSubmit={formMethods.handleSubmit(onSubmit)}
+      >
         <div className="grid sm:grid-cols-4 grid-cols-2 gap-4">
           {sums.map((sum) => (
             <Sum
