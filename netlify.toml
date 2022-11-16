@@ -5,8 +5,8 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-# [[plugins]]
-#   package = "../simple-emails-plugin"
+[[plugins]]
+  package = "@netlify/plugin-emails"
 
 [[redirects]]
   from = "/home"

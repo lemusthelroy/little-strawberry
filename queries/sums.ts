@@ -3,8 +3,8 @@ import { QueryCache, QueryClient, useQuery, useQueryClient } from "react-query";
 import shuffle from "utilities/shuffle";
 
 export interface ISumsResponse {
-  X: number;
-  Y: number;
+  x: number;
+  y: number;
 }
 
 // const queryClient = useQueryClient();
@@ -18,9 +18,8 @@ export const useGetSumsQuery = (nums: number[], enabled: boolean) =>
     ["getSums", nums.toString()],
     async () => {
       const numsQuery = nums.join();
-      console.log({ nums });
       const response = await axios.get<ISumsResponse[]>(
-        `https://sums-api-service-52fa57c-4fgiuwrxiq-ew.a.run.app/sums?numbers=${numsQuery}`
+        `/.netlify/functions/get-sums?numbers=${numsQuery}`
       );
 
       return shuffle<ISumsResponse>(response.data);

@@ -52,6 +52,19 @@ const Quiz = () => {
         >
           Let's go
         </Button>
+        <Button
+          onClick={() => {
+            fetch("http://localhost:8888/.netlify/functions/add-score", {
+              method: "POST",
+              body: JSON.stringify({
+                score: "100%",
+                email: "lewis.thorley@netlify.com",
+              }),
+            });
+          }}
+        >
+          Submit score
+        </Button>
       </FullScreenWrapper>
     );
   }

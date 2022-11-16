@@ -74,9 +74,9 @@ const Sums = ({
         <div className="grid sm:grid-cols-4 grid-cols-2 gap-4">
           {sums.map((sum) => (
             <Sum
-              x={sum.X}
-              y={sum.Y}
-              incorrect={!!incorrectAnswers[`${sum.X}-${sum.Y}`]}
+              x={sum.x}
+              y={sum.y}
+              incorrect={!!incorrectAnswers[`${sum.x}-${sum.y}`]}
             />
           ))}
         </div>
